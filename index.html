@@ -1,403 +1,141 @@
 <!DOCTYPE html>
 <html lang="bg">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DogWorld - Портал за кучета</title>
-    <style>
-        :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 40px;
-        }
-
-        header {
-            background: linear-gradient(135deg, #4f46e5, #06b6d4);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                grid-template-columns: 2fr 1fr;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .card h2 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 1.4rem;
-        }
-
-        /* Филтри за съвети */
-        .filter-buttons {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            background-color: #e0e7ff;
-            color: var(--primary);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn:hover, .btn.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .tips-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .tip-item {
-            padding: 1rem;
-            border-left: 4px solid var(--primary);
-            background: #f1f5f9;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .tip-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .tip-badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            background: #cbd5e1;
-            margin-top: 0.5rem;
-            font-weight: bold;
-        }
-
-        /* Форми и калкулатор */
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.6rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            padding: 0.7rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-hover);
-        }
-
-        .result-box {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            border-radius: 6px;
-            color: #065f46;
-            display: none;
-        }
-
-        /* Профили на кучета */
-        .dog-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f8fafc;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-top: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DogWorld - Портал за кучета</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1200') center/cover no-repeat;
+      color: white;
+      padding: 80px 0;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>🐾 DogWorld - Всичко за твоето куче</h1>
-        <p>Полезни съвети, калкулатори и профили за начинаещи и напреднали</p>
-    </header>
-
+  <!-- Навигация -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <!-- Лява колона: База със знания -->
-        <main>
-            <div class="card">
-                <h2>📚 База със знания & Съвети</h2>
-                
-                <div class="filter-buttons">
-                    <button class="btn active" onclick="filterTips('all', this)">Всички</button>
-                    <button class="btn" onclick="filterTips('beginner', this)">Начинаещи</button>
-                    <button class="btn" onclick="filterTips('advanced', this)">Напреднали</button>
-                </div>
-
-                <div class="tips-list" id="tipsContainer">
-                    <!-- Съветите се зареждат динамично чрез JS -->
-                </div>
-            </div>
-        </main>
-
-        <!-- Дясна колона: Интерактивни инструменти -->
-        <aside>
-            <!-- Калкулатор за храна -->
-            <div class="card">
-                <h2>🍖 Калкулатор за храна</h2>
-                <form id="calcForm" onsubmit="calculateFood(event)">
-                    <div class="form-group">
-                        <label for="weight">Тегло на кучето (кг):</label>
-                        <input type="number" id="weight" step="0.1" min="1" required placeholder="напр. 10">
-                    </div>
-                    <div class="form-group">
-                        <label for="activity">Ниво на активност:</label>
-                        <select id="activity">
-                            <option value="low">Ниска (възрастни / слабо активни)</option>
-                            <option value="normal" selected>Нормална (1-2 часа разходка)</option>
-                            <option value="high">Висока (работни / много активни)</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-submit">Изчисли дажба</button>
-                </form>
-                <div id="calcResult" class="result-box"></div>
-            </div>
-
-            <!-- Добавяне на куче -->
-            <div class="card">
-                <h2>🐶 Моите кучета</h2>
-                <form id="dogForm" onsubmit="addDog(event)">
-                    <div class="form-group">
-                        <label for="dogName">Име на кучето:</label>
-                        <input type="text" id="dogName" required placeholder="напр. Рекс">
-                    </div>
-                    <div class="form-group">
-                        <label for="dogBreed">Раса:</label>
-                        <input type="text" id="dogBreed" required placeholder="напр. Джак Ръсел Териер">
-                    </div>
-                    <div class="form-group">
-                        <label for="dogBirth">Дата на раждане:</label>
-                        <input type="date" id="dogBirth" required>
-                    </div>
-                    <button type="submit" class="btn-submit">Запази профил</button>
-                </form>
-
-                <div id="dogList" style="margin-top: 1rem;">
-                    <!-- Списък с кучета -->
-                </div>
-            </div>
-        </aside>
+      <a class="navbar-brand fw-bold" href="#">🐾 DogWorld</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Начало</a></li>
+          <li class="nav-item"><a class="nav-link" href="#training-videos">Видео уроци</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <script>
-        // Данни за съветите
-        const tips = [
-            {
-                title: "Първи стъпки у дома: Подготовка",
-                content: "Осигурете тихо място за легло, две купи (за вода и храна) и безопасни играчки за дъвчене.",
-                level: "beginner"
-            },
-            {
-                title: "Обучение на командата 'Ела'",
-                content: "Използвайте награди с висока стойност и никога не карайте кучето, когато дойде при вас.",
-                level: "beginner"
-            },
-            {
-                title: "Изграждане на хигиенни навици",
-                content: "Извеждайте палето веднага след сън, игра и хранене. Награждавайте веднага след пишкане навън.",
-                level: "beginner"
-            },
-            {
-                title: "Корекция на реактивност на каишка",
-                content: "Работете върху вниманието от разстояние, преди кучето да е достигнало прага си на възбуда.",
-                level: "advanced"
-            },
-            {
-                title: "Основи на Nosework (Търсене по миризма)",
-                content: "Заниманията с подушване уморяват мозъка на кучето много повече от обикновеното тичане.",
-                level: "advanced"
-            },
-            {
-                title: "Първа помощ при прегряване (Топлинен удар)",
-                content: "Охлаждайте лапите и коремчето с хладка (не ледена!) вода и потърсете ветеринар незабавно.",
-                level: "advanced"
-            }
-        ];
+  <!-- Hero секция -->
+  <header class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Добре дошли в DogWorld</h1>
+      <p class="lead">Всичко необходимо за грижата, здравето и дресурата на вашето куче.</p>
+    </div>
+  </header>
 
-        // 1. Рендериране и филтриране на съветите
-        function renderTips(filter = 'all') {
-            const container = document.getElementById('tipsContainer');
-            container.innerHTML = '';
+  <main>
+    <!-- Секция: Видео тренировки -->
+    <section id="training-videos" class="container my-5">
+      <h2 class="text-center mb-4">🎥 Тренировъчни видеа за дресура</h2>
+      <div class="row g-4">
+        
+        <!-- Безплатно видео -->
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Команда Седни" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <span class="badge bg-success mb-2">Безплатно</span>
+              <h5 class="card-title">Команда "Седни" и "Легни"</h5>
+              <p class="card-text">Основни стъпки за начинаещи кучета и техните стопани.</p>
+            </div>
+          </div>
+        </div>
 
-            const filteredTips = filter === 'all' 
-                ? tips 
-                : tips.filter(tip => tip.level === filter);
-
-            filteredTips.forEach(tip => {
-                const tipEl = document.createElement('div');
-                tipEl.className = 'tip-item';
-                const badgeText = tip.level === 'beginner' ? 'Начинаещи' : 'Напреднали';
-                
-                tipEl.innerHTML = `
-                    <h3>${tip.title}</h3>
-                    <p>${tip.content}</p>
-                    <span class="tip-badge">${badgeText}</span>
-                `;
-                container.appendChild(tipEl);
-            });
-        }
-
-        function filterTips(level, btn) {
-            document.querySelectorAll('.filter-buttons .btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderTips(level);
-        }
-
-        // 2. Калкулатор за дневна хранителна дажба
-        function calculateFood(event) {
-            event.preventDefault();
-            const weight = parseFloat(document.getElementById('weight').value);
-            const activity = document.getElementById('activity').value;
-
-            // Базова формула: ~2-3% от теглото за възрастно куче
-            let percentage = 0.025; // 2.5% по подразбиране
-            if (activity === 'low') percentage = 0.02;
-            if (activity === 'high') percentage = 0.035;
-
-            const dailyGrams = Math.round(weight * 1000 * percentage);
-            const resultBox = document.getElementById('calcResult');
+        <!-- Премиум видео (Заключено) -->
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm position-relative overflow-hidden">
             
-            resultBox.style.display = 'block';
-            resultBox.innerHTML = `
-                <strong>Препоръчителна дневна дажба:</strong><br>
-                Около <strong>${dailyGrams} гр.</strong> гранулирана храна на ден (разделена на 2 хранения).
-            `;
-        }
+            <!-- Замъглена видео карта с катинар -->
+            <div id="locked-video" class="ratio ratio-16x9 bg-dark d-flex flex-column align-items-center justify-content-center text-white text-center p-3">
+              <div class="py-4">
+                <h1 class="display-4">🔒</h1>
+                <h4>Премиум съдържание</h4>
+                <p class="small text-muted mb-3">Команда "Търси предмет" и ходене "Рамо до рамо"</p>
+                <button class="btn btn-warning fw-bold text-dark" onclick="openPaymentModal()">
+                  Отключи за 4.99 лв.
+                </button>
+              </div>
+            </div>
 
-        // 3. Управление на профилите на кучета (с localStorage)
-        function getDogs() {
-            return JSON.parse(localStorage.getItem('myDogs') || '[]');
-        }
+            <!-- Отключено видео (Скрито по подразбиране) -->
+            <div id="unlocked-video" class="ratio ratio-16x9 d-none">
+              <iframe id="premium-iframe" src="" title="Премиум команди" allowfullscreen></iframe>
+            </div>
 
-        function saveDogs(dogs) {
-            localStorage.setItem('myDogs', JSON.stringify(dogs));
-        }
+            <div class="card-body">
+              <span class="badge bg-warning text-dark mb-2">PRO Достъп</span>
+              <h5 class="card-title">Напреднала дресура & Сложни команди</h5>
+              <p class="card-text">Професионални техники за контрол на вниманието и следене.</p>
+            </div>
+          </div>
+        </div>
 
-        function addDog(event) {
-            event.preventDefault();
-            const name = document.getElementById('dogName').value;
-            const breed = document.getElementById('dogBreed').value;
-            const birth = document.getElementById('dogBirth').value;
+      </div>
+    </section>
+  </main>
 
-            const dogs = getDogs();
-            dogs.push({ id: Date.now(), name, breed, birth });
-            saveDogs(dogs);
+  <!-- Демо Модален прозорец за плащане -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">💳 Демо плащане - DogWorld PRO</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted small">Това е демо симулация. Въведи тестови данни или просто натисни "Потвърди плащането".</p>
+          <form id="demo-pay-form" onsubmit="processDemoPayment(event)">
+            <div class="mb-3">
+              <label class="form-label">Име на картата</label>
+              <input type="text" class="form-control" placeholder="Иван Иванов" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Номер на карта</label>
+              <input type="text" class="form-control" placeholder="4532 •••• •••• 8899" maxlength="19" required>
+            </div>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Срок</label>
+                <input type="text" class="form-control" placeholder="12/28" required>
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">CVC</label>
+                <input type="password" class="form-control" placeholder="123" maxlength="3" required>
+              </div>
+            </div>
+            <button type="submit" id="pay-btn" class="btn btn-success w-100 fw-bold py-2">
+              Потвърди плащането (4.99 лв.)
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            document.getElementById('dogForm').reset();
-            renderDogs();
-        }
-
-        function deleteDog(id) {
-            let dogs = getDogs();
-            dogs = dogs.filter(dog => dog.id !== id);
-            saveDogs(dogs);
-            renderDogs();
-        }
-
-        function renderDogs() {
-            const list = document.getElementById('dogList');
-            const dogs = getDogs();
-            list.innerHTML = '';
-
-            if (dogs.length === 0) {
-                list.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">Няма добавени кучета.</p>';
-                return;
-            }
-
-            dogs.forEach(dog => {
-                const dogEl = document.createElement('div');
-                dogEl.className = 'dog-card';
-                dogEl.innerHTML = `
-                    <div>
-                        <strong>${dog.name}</strong> (${dog.breed})<br>
-                        <small style="color: var(--text-muted);">Роден(а): ${dog.birth}</small>
-                    </div>
-                    <button onclick="deleteDog(${dog.id})" style="background:none; border:none; color: #ef4444; cursor:pointer; font-size: 1.1rem;" title="Изтрий">🗑️</button>
-                `;
-                list.appendChild(dogEl);
-            });
-        }
-
-        // Инициализация при зареждане
-        renderTips();
-        renderDogs();
-    </script>
+  <!-- JS библиотеки -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
